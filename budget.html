@@ -20,7 +20,7 @@
     </head>
 
     <body>
-        <h2><span style="background-color: lightsteelblue;">2012</span> vs <span style="background-color: DarkSalmon;">2016</span></h2>
+        <h2><span style="background-color: MediumTurquoise;">2012</span> vs <span style="background-color: DarkSalmon;">2016</span></h2>
 
         <h3>Total Deficit</h3>
         <div class="graph" id="deficit-graph">
@@ -47,7 +47,7 @@
 
         <script>
 
-        var colors = [ "lightsteelblue", "DarkSalmon" ];
+        var colors = [ "MediumTurquoise", "DarkSalmon" ];
 
          var makeBars = function(graph_id, info, text) {
 
@@ -68,7 +68,7 @@
                       });
          };
 
-         var transitionTest = function(graph_id, info, scale) {
+         var transition = function(graph_id, info, scale) {
 
 	     var graph_div = d3.select(graph_id);
 
@@ -84,27 +84,27 @@
 	 var deficit_info = [1040, 552];
    var text = [ "$1040 billion", "$552 billion" ];
    makeBars("#deficit-graph", deficit_info, text);
-   transitionTest("#deficit-graph", deficit_info, 2);
+   transition("#deficit-graph", deficit_info, 2);
 
 	 var gdp_info = [153, 165];
    var text = [ "$15.3 trillion", "$16.5 trillion" ];
 	 makeBars("#gdp-graph", gdp_info, text);
-	 transitionTest("#gdp-graph", gdp_info, 2);
+	 transition("#gdp-graph", gdp_info, 2);
 
 	 var revenue_info = [234, 299];
    var text = [ "$2.34 trillion", "$2.99 trillion" ];
 	 makeBars("#revenue-graph", revenue_info, text);
-	 transitionTest("#revenue-graph", revenue_info, 2);
+	 transition("#revenue-graph", revenue_info, 2);
 
 	 var spending_info = [337, 354];
    var text = [ "$3.37 trillion", "$3.54 trillion" ];
 	 makeBars("#spending-graph", spending_info, text);
-	 transitionTest("#spending-graph", spending_info, 2);
+	 transition("#spending-graph", spending_info, 2);
 
 	 var debt_info = [153, 174];
    var text = [ "$15.3 trillion", "$17.4 trillion" ];
 	 makeBars("#debt-graph", debt_info, text);
-	 transitionTest("#debt-graph", debt_info, 2);
+	 transition("#debt-graph", debt_info, 2);
 
         </script>
 
