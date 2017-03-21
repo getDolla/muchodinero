@@ -1,63 +1,93 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js" charset="utf-8"></script>
-    <title>D3 Intro</title>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js" charset="utf-8"></script>
+        <title>D3 Intro</title>
 
-    <style>
-      .graph div {
-      font: 10px sans-serif;
-      background-color: steelblue;
-      text-align: right;
-      padding: 3px;
-      margin: 1px;
-      color: white;
-      }
-    </style>
+        <style>
+         .graph div {
+             font: 10px sans-serif;
+             background-color: steelblue;
+             text-align: right;
+             padding: 3px;
+             margin: 1px;
+             color: white;
+         }
+        </style>
 
-  </head>
+    </head>
 
-  <body>
-    <h2>Dyamic Chart</h2>
-    <div class="graph" id="muchwow">
-    </div>
+    <body>
+        <h2>Dyamic Chart</h2>
+        <div class="graph" id="deficit-graph">
+        </div>
+	<br>
+        <div class="graph" id="gdp-graph">
+        </div>
+	<br>
+        <div class="graph" id="revenue-graph">
+        </div>
+	<br>
+        <div class="graph" id="spending-graph">
+        </div>
+	<br>
+        <div class="graph" id="debt-graph">
+        </div>
+	<br>
+	
+        <script>
 
-    <script>
-      var dyn = d3.select("#muchwow");
-      var info = [4, 8, 15, 16, 23, 42];
+         var makeBars = function(graph_id, info) {
 
-      var makeBars = function() {
-      
-      dyn.selectAll("div")
-      .data(info)
-      .enter()
-      .append("div") 
-      .style("width", function(d) {
-      return d + "px";
-      })
-      .text( function(d) {
-      return d;
-      });
-      };
+             var graph_div = d3.select(graph_id);
 
-      var transitionTest = function( scale ) {
+             graph_div.selectAll("div")
+                      .data(info)
+                      .enter()
+                      .append("div")
+                      .style("width", function(d) {
+			  return d / 3 + "px";
+                      })
+                      .text( function(d) {
+			  return d;
+                      });
+         };
 
-      //makeBars();
+         var transitionTest = function(graph_id, info, scale) {
 
-      dyn.selectAll("div")
-      .data(info)
-      .transition()
-      .duration(6000)
-      .style("width", function(d) {
-      return d * scale + "px";
-      });
-      };
-      
-      makeBars();
-      transitionTest(3);
+	     var graph_div = d3.select(graph_id);
+	     
+	     graph_div.selectAll("div")
+		      .data(info)
+		      .transition()
+		      .duration(4000)
+		      .style("width", function(d) {
+			  return d / 3* scale + "px";
+                      });
+         };
 
-    </script>
+	 var deficit_info = [1040, 552]
+         makeBars("#deficit-graph", deficit_info);
+         transitionTest("#deficit-graph", deficit_info, 2);
 
-  </body>
+	 var gdp_info = [15300, 16500]
+	 makeBars("gdp-graph", gdp_info)
+	 transitionTest("gdp-graph", gdp_info, 2)
+
+	 var revenue_info = [2340, 2990]
+	 makeBars("#revenue-graph", revenue_info)
+	 transitionTest("#revenue-graph", revenue_info, 2)
+
+	 var spending_info = [3370, 3540]
+	 makeBars("#spending-graph", spending_info)
+	 transitionTest("#spending-graph", spending_info, 2)
+
+	 var debt_info = [15300, 17400]
+	 makeBars("#debt-graph", debt_info)
+	 transitionTest("#debt-graph", debt_info, 2)
+	 
+        </script>
+
+    </body>
 </html>
